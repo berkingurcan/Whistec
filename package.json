@@ -1,0 +1,19 @@
+{
+  "name": "whistec",
+  "version": "1.0.0",
+  "description": "Whistec is a web3 library designed to facilitate the integration of private transactions into web2 applications using zk, especially payment systems. It provides customizable and useful packages for integrating Aztec with web2 applications, enhancing privacy and security. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berkingurcan/Whistec.git"
+  },
+  "author": "berkingurcan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/berkingurcan/Whistec/issues"
+  },
+  "homepage": "https://github.com/berkingurcan/Whistec#readme"
+}
