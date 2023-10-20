@@ -1,4 +1,4 @@
-use std;
+use dep::std;
 
 fn main(userSecret : Field, nonce: Field, encryptedCode : pub Field) {
     let x = [userSecret, nonce];
