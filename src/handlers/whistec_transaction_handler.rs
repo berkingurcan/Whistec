@@ -18,8 +18,6 @@ impl TransactionHandler {
         let mut poseidon = Poseidon::<Fr>::new_circom(2).unwrap();
         let hash = poseidon.hash_bytes_be(&[&user_secret_bytes, &nonce_bytes]).unwrap();
 
-        // convert ark-ff field hash to Field struct
-        
         return hash;
     }
 
