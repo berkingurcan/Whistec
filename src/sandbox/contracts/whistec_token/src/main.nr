@@ -15,6 +15,8 @@ contract Token {
 
     use dep::safe_math::SafeU120;
 
+    use dep::aztec::log::emit_encrypted_log;
+
     use dep::aztec::{
         note::{
             note_getter_options::NoteGetterOptions,
@@ -31,6 +33,8 @@ contract Token {
         },
         types::address::{AztecAddress},
         selector::compute_selector,
+        oracle::get_public_key::get_public_key,
+
     };
 
     // docs:start:import_authwit
@@ -321,6 +325,7 @@ contract Token {
         to: AztecAddress,
         amount: Field,
         nonce: Field,
+        encrypted_code: [Field; 1],
     ) -> Field {
         if (from.address != context.msg_sender()) {
             assert_current_call_valid_authwit(&mut context, from);
@@ -332,6 +337,18 @@ contract Token {
         storage.balances.at(from).sub(amount);
         storage.balances.at(to).add(amount);
 
+        let owner = to;
+        let owner_key = get_public_key(owner.address);
+        let owner_set = storage.public_balances.at(owner.address);
+
+        emit_encrypted_log(
+            &mut context,
+            context.this_address(),
+            owner_set.storage_slot,
+            owner_key,
+            encrypted_code,
+        );
+        
         1
     }
     // docs:end:transfer
