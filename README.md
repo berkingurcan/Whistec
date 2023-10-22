@@ -97,7 +97,7 @@ To use the Whistec library in your Rust application, follow these steps:
 1. Import the Whistec crate in your Rust file:
     
     ```rust
-    use Whistec::handlers::TransactionHandle
+    use Whistec::handlers::TransactionHandler;
     ```
     
 2. Instantiate the WhistecTransactionHandler:
