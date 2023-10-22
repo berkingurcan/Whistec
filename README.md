@@ -11,7 +11,6 @@ It provides customizable and useful package for integrating Aztec with web2 appl
 
 The Purchase Handler is a crucial component of the Whistec library that facilitates the purchase of claims within the web2 application. It handles the following functions:
 
-- **User Secret Creation**: Allows the user to create a secret on the browser and securely store it for future use.
 - **Encryption**: Utilizes the *`encrypt(userSecret, nonce)`* function to generate an encrypted code, which serves as a unique identifier for the user.
 - **Proof Export**: Enables the user to export a proof from the browser or local environment for future verification.
 - **Send Transaction:** Transaction handler function, whether from contract or native transaction with `sendTransaction(txDetails, encryptedCode)`
