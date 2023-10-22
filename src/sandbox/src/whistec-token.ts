@@ -142,6 +142,7 @@ import {
         to: AztecAddressLike,
         amount: FieldLike,
         nonce: FieldLike,
+        encryptedCode: FieldLike,
       ) => ContractFunctionInteraction) &
         Pick<ContractMethod, 'selector'>;
   

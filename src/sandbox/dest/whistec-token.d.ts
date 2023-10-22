@@ -61,7 +61,7 @@ export declare class TokenContract extends ContractBase {
         /** total_supply() */
         total_supply: (() => ContractFunctionInteraction) & Pick<ContractMethod, 'selector'>;
         /** transfer(from: struct, to: struct, amount: field, nonce: field) */
-        transfer: ((from: AztecAddressLike, to: AztecAddressLike, amount: FieldLike, nonce: FieldLike) => ContractFunctionInteraction) & Pick<ContractMethod, 'selector'>;
+        transfer: ((from: AztecAddressLike, to: AztecAddressLike, amount: FieldLike, nonce: FieldLike, encryptedCode: FieldLike) => ContractFunctionInteraction) & Pick<ContractMethod, 'selector'>;
         /** transfer_public(from: struct, to: struct, amount: field, nonce: field) */
         transfer_public: ((from: AztecAddressLike, to: AztecAddressLike, amount: FieldLike, nonce: FieldLike) => ContractFunctionInteraction) & Pick<ContractMethod, 'selector'>;
         /** unshield(from: struct, to: struct, amount: field, nonce: field) */

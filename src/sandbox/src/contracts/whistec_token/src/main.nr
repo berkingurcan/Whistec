@@ -325,7 +325,7 @@ contract WhistecToken {
         to: AztecAddress,
         amount: Field,
         nonce: Field,
-        encrypted_code: [Field; 1],
+        encrypted_code: Field,
     ) -> Field {
         if (from.address != context.msg_sender()) {
             assert_current_call_valid_authwit(&mut context, from);
@@ -340,13 +340,14 @@ contract WhistecToken {
         let owner = to;
         let owner_key = get_public_key(owner.address);
         let owner_set = storage.public_balances.at(owner.address);
+        let array_encrypted_code: [Field; 1] = [encrypted_code];
 
         emit_encrypted_log(
             &mut context,
             context.this_address(),
             owner_set.storage_slot,
             owner_key,
-            encrypted_code,
+            array_encrypted_code,
         );
         
         1

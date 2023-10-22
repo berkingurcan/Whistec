@@ -71,10 +71,10 @@ async function main() {
     let appBalance = await tokenContractApp.methods.balance_of_private(appvault).view();
     logger(`App's balance ${appBalance}`);
 
-    async function transferTokens(from: AztecAddressLike, to: AztecAddressLike, amount: bigint) {
+    async function transferTokens(from: AztecAddressLike, to: AztecAddressLike, amount: bigint, encryptedCode = Fr.random()) {
         const transferQuantity = amount;
         logger(`Transferring ${transferQuantity} tokens from User to App...`);
-        await tokenContractUser.methods.transfer(from, to, transferQuantity, 0).send().wait();
+        await tokenContractUser.methods.transfer(from, to, transferQuantity, 0, encryptedCode).send().wait();
 
         // Check the new balances
         userBalance = await tokenContractUser.methods.balance_of_private(from).view();
