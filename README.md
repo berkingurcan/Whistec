@@ -18,16 +18,16 @@ The Purchase Handler is a crucial component of the Whistec library that facilita
 
 ### WistecEventListener
 
-Listening encrypted events decrypts it with application owner key. 
+Listening encrypted events decrypts it with application owner key. Emitted from Whistec Token contract:
 
 ```rust
 emit_encrypted_log(
-            &mut context,
-            context.this_address(),
-            owner_set.storage_slot,
-            owner_key,
-            array_encrypted_code,
-        );
+     &mut context,
+     context.this_address(),
+     owner_set.storage_slot,
+     owner_key,
+     array_encrypted_code,
+);
 ```
 
 When `array_encrypted_code is not empty`, triggers `POST` event.
