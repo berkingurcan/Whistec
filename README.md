@@ -1,4 +1,4 @@
-![banner](https://github.com/[berkingurcan]/[Whistec]/blob/[main]/whistecbanner.png?raw=true)
+![banner](https://github.com/berkingurcan/Whistec/blob/main/whistecbanner.png?raw=true)
 # Whistec
 
 The Whistec is a web3 library designed to facilitate the integration private transactions into web2 applications using zk, expecially payment systems.
