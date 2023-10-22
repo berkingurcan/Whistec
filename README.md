@@ -5,6 +5,41 @@ The Whistec is a web3 library designed to facilitate the integration private tra
 
 It provides customizable and useful package for integrating Aztec with web2 applications.
 
+## Library Components
+
+### WistecTransactionHandler
+
+The Purchase Handler is a crucial component of the Whistec library that facilitates the purchase of claims within the web2 application. It handles the following functions:
+
+- **User Secret Creation**: Allows the user to create a secret on the browser and securely store it for future use.
+- **Encryption**: Utilizes the *`encrypt(userSecret, nonce)`* function to generate an encrypted code, which serves as a unique identifier for the user.
+- **Proof Export**: Enables the user to export a proof from the browser or local environment for future verification.
+- **Send Transaction:** Transaction handler function, whether from contract or native transaction with `sendTransaction(txDetails, encryptedCode)`
+
+### WistecEventListener
+
+Listening encrypted events decrypts it with application owner key. 
+
+```rust
+emit_encrypted_log(
+            &mut context,
+            context.this_address(),
+            owner_set.storage_slot,
+            owner_key,
+            array_encrypted_code,
+        );
+```
+
+When `array_encrypted_code is not empty`, triggers `POST` event.
+
+### WistecVerifier
+
+The Verifier component provides an environment for the user to authorizes themselves.
+
+- ****************************Proof Export:**************************** User can create proof by using theis secret and nonce
+- **************************************************************************Onchain or Offchain Verification Tools:************************************************************************** Creates verification tools for both scenario
+- **Auth Trigger:** When verification occurs, triggers a `POST` request to the backend and provides the user with an authentication token like `JWT` to use the API.
+
 ## Example Library Usage In Application
 
 Suppose we have logo generator application and users should have claims to generate logo.
@@ -60,37 +95,3 @@ The outcomes of using Whistec in the example application above can be summarized
 
 In summary, Whistec enhances the privacy and security of the example application by enabling anonymous payments through zk, ensuring secure and anonymous user authentication, and providing efficient transaction management capabilities.
 
-## Library Components
-
-### WistecTransactionHandler
-
-The Purchase Handler is a crucial component of the Whistec library that facilitates the purchase of claims within the web2 application. It handles the following functions:
-
-- **User Secret Creation**: Allows the user to create a secret on the browser and securely store it for future use.
-- **Encryption**: Utilizes the *`encrypt(userSecret, nonce)`* function to generate an encrypted code, which serves as a unique identifier for the user.
-- **Proof Export**: Enables the user to export a proof from the browser or local environment for future verification.
-- **Send Transaction:** Transaction handler function, whether from contract or native transaction with `sendTransaction(txDetails, encryptedCode)`
-
-### WistecEventListener
-
-Listening encrypted events decrypts it with application owner key. 
-
-```rust
-emit_encrypted_log(
-            &mut context,
-            context.this_address(),
-            owner_set.storage_slot,
-            owner_key,
-            array_encrypted_code,
-        );
-```
-
-When `array_encrypted_code is not empty`, triggers `POST` event.
-
-### WistecVerifier
-
-The Verifier component provides an environment for the user to authorizes themselves.
-
-- ****************************Proof Export:**************************** User can create proof by using theis secret and nonce
-- **************************************************************************Onchain or Offchain Verification Tools:************************************************************************** Creates verification tools for both scenario
-- **Auth Trigger:** When verification occurs, triggers a `POST` request to the backend and provides the user with an authentication token like `JWT` to use the API.
