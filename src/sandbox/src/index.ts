@@ -11,7 +11,7 @@ import {
     waitForSandbox,
 } from '@aztec/aztec.js';
 import { GrumpkinScalar } from '@aztec/circuits.js';
-import { TokenContract } from '@aztec/noir-contracts/types';
+import { TokenContract } from './whistec-token.js'
 
 import { format } from 'util';
 

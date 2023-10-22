@@ -9,7 +9,7 @@ mod types;
 // To be read as `caller` calls function at `contract` defined by `selector` with `args`
 // Including a nonce in the message hash ensures that the message can only be used once.
 
-contract Token {
+contract WhistecToken {
     // Libs
     use dep::std::option::Option;
 
