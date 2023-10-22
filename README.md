@@ -77,6 +77,16 @@ The Verifier component provides an environment for the user to authorizes themse
 - **************************************************************************Onchain or Offchain Verification Tools:************************************************************************** Creates verification tools for both scenario
 - **Auth Trigger:** When verification occurs, triggers a `POST` request to the backend and provides the user with an authentication token like `JWT` to use the API.
 
+Uses noir circuit and export proof:
+```rust
+use dep::std;
+
+fn main(userSecret : Field, nonce: Field, encryptedCode : pub Field) {
+    let x = [userSecret, nonce];
+    let hash = std::hash::poseidon::bn254::hash_2(x);
+    assert(hash == encryptedCode);
+}
+```
 
 # Instructions
 
