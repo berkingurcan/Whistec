@@ -20,14 +20,13 @@ impl TransactionHandler {
         return hash;
     }
 
-    fn export_proof(&self, user_secret: u32, nonce: u32) -> Vec<u8> {
+    pub fn export_proof(&self, user_secret: u32, nonce: u32) -> Vec<u8> {
         // implementation for exporting proof
         unimplemented!()
     }
 
-    fn send_transaction(&self, from: &[u8], vault: &[u8]) -> bool {
-        // implementation for sending transaction
-        
+    pub fn send_transaction(&self) {
+        execute_command(&format!("cd src/sandbox && yarn start"))
     }
 }
 

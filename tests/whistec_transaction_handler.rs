@@ -27,6 +27,8 @@ mod tests {
 
     #[test]
     fn test_send_transaction() {
-        unimplemented!()
+        let handler = TransactionHandler {};
+        // check if there is error when sending transaction
+        handler.send_transaction();
     }
 }
