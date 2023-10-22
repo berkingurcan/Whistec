@@ -15,6 +15,43 @@ The Purchase Handler is a crucial component of the Whistec library that facilita
 - **Encryption**: Utilizes the *`encrypt(userSecret, nonce)`* function to generate an encrypted code, which serves as a unique identifier for the user.
 - **Proof Export**: Enables the user to export a proof from the browser or local environment for future verification.
 - **Send Transaction:** Transaction handler function, whether from contract or native transaction with `sendTransaction(txDetails, encryptedCode)`
+Uses Whistec Token's transfer function
+
+```rust
+#[aztec(private)]
+fn transfer(
+   from: AztecAddress,
+   to: AztecAddress,
+   amount: Field,
+   nonce: Field,
+   encrypted_code: Field,
+) -> Field {
+   if (from.address != context.msg_sender()) {
+       assert_current_call_valid_authwit(&mut context, from);
+   } else {
+       assert(nonce == 0, "invalid nonce");
+   }
+
+   let amount = SafeU120::new(amount);
+   storage.balances.at(from).sub(amount);
+   storage.balances.at(to).add(amount);
+
+   let owner = to;
+   let owner_key = get_public_key(owner.address);
+   let owner_set = storage.public_balances.at(owner.address);
+   let array_encrypted_code: [Field; 1] = [encrypted_code];
+
+   emit_encrypted_log(
+       &mut context,
+       context.this_address(),
+       owner_set.storage_slot,
+       owner_key,
+       array_encrypted_code,
+   );
+   
+   1
+}
+```
 
 ### WistecEventListener
 
