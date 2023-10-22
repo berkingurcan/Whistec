@@ -40,6 +40,80 @@ The Verifier component provides an environment for the user to authorizes themse
 - **************************************************************************Onchain or Offchain Verification Tools:************************************************************************** Creates verification tools for both scenario
 - **Auth Trigger:** When verification occurs, triggers a `POST` request to the backend and provides the user with an authentication token like `JWT` to use the API.
 
+
+# Instructions
+
+### ***Note: This library is currently in the build phase, not completed, most of the functions are may not working and may not be stable.***
+
+This guide provides instructions on how to run the **Whistec** library as a Rust crate.
+
+## Prerequisites
+
+Before running the Whistec library, ensure that you have the following installed:
+
+- Rust programming language and Cargo package manager. You can install Rust by following the official Rust installation guide: https://www.rust-lang.org/tools/install
+- Node.js >= v18
+- Install Node.js and npm. You can download and install Node.js from the official website: [Node.js](https://nodejs.org/)
+- Docker and Docker Compose (Docker Desktop under WSL2 on windows)
+- Install Aztec Sandbox by following the instructions from [here](https://docs.aztec.network/dev_docs/getting_started/sandbox#install-the-sandbox) and run it.
+- Install Aztec CLI from [here](https://docs.aztec.network/dev_docs/cli/main#requirements).
+
+## Installation
+
+To install the Whistec library, follow these steps:
+
+1. Open a terminal or command prompt.
+2. `git clone https://github.com/berkingurcan/Whistec.git`
+
+Compile circuit:
+
+1. `cd circuits/user && nargo check`
+2. `nargo compile`
+
+Install dependencies of sandbox and Aztec CLI:
+
+1. `cd sandbox && yarn`
+
+Compile Whistec Token contract:
+
+1. `cd sandbox/src/contracts`
+2. Copy your contract folder path compile it like: 
+    
+    `aztec-cli compile ./path/to/contracts/whistec_token`
+    
+
+In the sandbox folder run `yarn start` to run ***whistec_token*** script.
+
+### Testing
+
+Go to project root and run `cargo test`
+
+Should pass encrypt and send transactions tests.
+
+## Usage
+
+To use the Whistec library in your Rust application, follow these steps:
+
+1. Import the Whistec crate in your Rust file:
+    
+    ```rust
+    use Whistec::handlers::TransactionHandle
+    ```
+    
+2. Instantiate the WhistecTransactionHandler:
+    
+    ```rust
+    let handler = TransactionHandler {};
+    ```
+    
+3. Use functions provided by the WhistecTransactionHandler to encrypt the to handle user authentication and send transaction.
+    
+    ```rust
+    let hash = handler.encrypt(1, 2);
+    
+    handler.send_transaction(from, to, hash);
+    ```
+
 ## Example Library Usage In Application
 
 Suppose we have logo generator application and users should have claims to generate logo.
